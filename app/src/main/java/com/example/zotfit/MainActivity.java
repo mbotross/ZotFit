@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
                 showusers();
                 if(user.length()!=0 && pass.length()!=0){
                     //log them in
-
+                    if(userlist!=null){
                     for(String fitter:userlist){
                         System.out.println(fitter);
                         if(user.equals(fitter)){
@@ -79,7 +79,7 @@ public class MainActivity extends Activity {
                            showmessage(2);
                         }
 
-                    }
+                    }}
 
                     if(clear==0){
                         mydb.adduser(user,pass);
