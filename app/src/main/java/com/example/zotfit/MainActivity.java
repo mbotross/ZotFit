@@ -3,7 +3,6 @@ package com.example.zotfit;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -16,7 +15,7 @@ public class MainActivity extends Activity {
 
     EditText username,password;
     Button login,register;
-    String user, pass;
+    static String user, pass;
     Database mydb;
     Intent intent;
     String[] userlist,passlist;
@@ -73,7 +72,7 @@ public class MainActivity extends Activity {
                     //log them in
                     if(userlist!=null){
                     for(String fitter:userlist){
-                        System.out.println(fitter);
+                        //System.out.println(fitter);
                         if(user.equals(fitter)){
                            clear=1;
                            showmessage(2);
@@ -83,6 +82,7 @@ public class MainActivity extends Activity {
 
                     if(clear==0){
                         mydb.adduser(user,pass);
+
                         startActivity(intent);
                     }
 

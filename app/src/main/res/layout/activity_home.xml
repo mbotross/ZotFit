@@ -20,52 +20,6 @@
         android:background="#FFCC00"
         />
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="190dp"
-        android:layout_height="83dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="534dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.882"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="242dp"
-        android:layout_marginRight="220dp"
-        android:layout_marginBottom="563dp"
-        android:text="Search Food Item:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.77"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.095" />
-
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/piechart"
-        android:layout_width="327dp"
-        android:layout_height="228dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="58dp"
-        android:layout_marginBottom="172dp" />
-
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -75,6 +29,15 @@
         app:itemBackground="@color/colorbottombar"
         app:itemIconTint="@android:color/black"
         app:itemTextColor="@android:color/black" />
+
+    <FrameLayout
+        android:id="@+id/fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="548dp"
+        android:layout_alignTop="@+id/toolbar"
+        android:layout_alignBottom="@+id/bottom_navigation"
+        android:layout_marginTop="126dp"
+        android:layout_marginBottom="57dp"/>
 
 
 </RelativeLayout>

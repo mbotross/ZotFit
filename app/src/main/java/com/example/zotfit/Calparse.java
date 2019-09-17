@@ -1,5 +1,6 @@
 package com.example.zotfit;
 
+import android.net.sip.SipAudioCall;
 import android.os.AsyncTask;
 
 import java.io.BufferedReader;
@@ -12,6 +13,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.fatsecret.platform.services.FatsecretService;
 import com.fatsecret.platform.model.CompactFood;
 import com.fatsecret.platform.services.Request;
@@ -80,18 +83,22 @@ public class Calparse extends AsyncTask<Void,Void,String> {
         FatsecretService service = new FatsecretService(key, secret);
 
         String query = "pasta"; //Your query string
+      //  RequestQueue requestQueue = Volley.newRequestQueue();
+       // com.android.volley.Response.Listener listener = new com.android.volley.Response.Listener();
+
+        //Request req = new Request(key, secret, listener);
         Response<CompactFood> response = service.searchFoods(query);
 
         //This response contains the list of food items at zeroth page for your query
 
-      //  List<CompactFood> results=response.getResults();
+        List<CompactFood> results=response.getResults();
        // return results;
-        return null;
+        return results;
     }
 
     protected void onPostExecute(String response) {
         if(response == null) {
-            response = "THERE WAS AN ERROR";
+            //response = "THERE WAS AN ERROR";
             System.out.println("im nto ai");
         }
         else{

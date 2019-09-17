@@ -2,6 +2,10 @@
 <manifest android:targetSandboxVersion="1" xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.zotfit">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    
 
     <application
         android:usesCleartextTraffic="true"
@@ -19,6 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"/>
     </application>
 
 </manifest>
