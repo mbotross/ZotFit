@@ -109,7 +109,7 @@ public class Friends_Fragment extends Fragment {
             ImageView imageView=(ImageView)view.findViewById(R.id.friendimage);
             TextView textView=(TextView)view.findViewById(R.id.friendname);
             de.hdodenhof.circleimageview.CircleImageView circleImageView= (CircleImageView) view.findViewById(R.id.circleimage);
-            circleImageView.setImageResource(R.drawable.zotfit);
+            circleImageView.setImageResource(R.mipmap.ic_launcher_round);
             textView.setText(userlist[position]);
             return view;
         }

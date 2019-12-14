@@ -25,6 +25,7 @@ public class Home_Fragment extends Fragment {
     ListView listview;
     List friendslist=new ArrayList<>();
     ArrayAdapter adapter;
+    Calparse calparse;
     TextView Name;
     Database db;
     final static int gallerypic=1;
@@ -42,6 +43,7 @@ public class Home_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
        circleImageView= (CircleImageView) view.findViewById(R.id.circleimage);
         db=new Database(getContext());
         Name=view.findViewById(R.id.nametext);
@@ -56,6 +58,8 @@ public class Home_Fragment extends Fragment {
             }
         });
 
+        this.calparse = new Calparse();
+        calparse.execute();
 
 
 

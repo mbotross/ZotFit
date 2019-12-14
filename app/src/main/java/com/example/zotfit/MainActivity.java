@@ -72,7 +72,6 @@ public class MainActivity extends Activity {
                     //log them in
                     if(userlist!=null){
                     for(String fitter:userlist){
-                        //System.out.println(fitter);
                         if(user.equals(fitter)){
                            clear=1;
                            showmessage(2);
@@ -131,15 +130,22 @@ public class MainActivity extends Activity {
 
     }
     public void showmessage(int i){
-        if (i==1){
-        Toast.makeText(this,"You mus enter a username and password", Toast.LENGTH_SHORT).show();}
-        else if(i==2){
-            Toast.makeText(this,"Username taken, please enter another Username",Toast.LENGTH_LONG).show();
-        }
-        else{
-            Toast.makeText(this,"Username or Password incorrect",Toast.LENGTH_LONG).show();
+        String message=" ";
 
+        switch(i){
+            case 1:
+                message="Please Enter a Username and Password";
+                break;
+            case 2:
+                message="Username" +user + "already taken";
+                break;
+            case 3:
+                message="Invalid Username or Password";
+                break;
         }
+
+
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
 
     }
 }

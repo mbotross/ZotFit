@@ -1,39 +1,28 @@
 package com.example.zotfit;
 
-import android.net.sip.SipAudioCall;
 import android.os.AsyncTask;
+
+import com.fatsecret.platform.model.CompactFood;
+import com.fatsecret.platform.services.FatsecretService;
+import com.fatsecret.platform.services.Request;
+import com.fatsecret.platform.services.Response;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-import com.fatsecret.platform.services.FatsecretService;
-import com.fatsecret.platform.model.CompactFood;
-import com.fatsecret.platform.services.Request;
-import com.fatsecret.platform.services.Response;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-public class Calparse extends AsyncTask<Void,Void,String> {
+public class Calparse extends AsyncTask<Void, Void, String> {
 
     Home home;
     public Request request;
-    public Calparse(Home home){
-        this.home=home;
 
-    }
     @Override
     protected String doInBackground(Void... voids) {
-        try{
+        try {
             //URL url= new URL("https://platform.fatsecret.com/js?key=2bddcb3b9540419c83d720f4eef90eb8");
             URL url = new URL("https://platform.fatsecret.com/js?key=2bddcb3b9540419c83d720f4eef90eb8");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -52,15 +41,11 @@ public class Calparse extends AsyncTask<Void,Void,String> {
                 return stringBuilder.toString();
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-
-            finally{
+            } finally {
                 con.disconnect();
             }
 
-        }
-
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             e.printStackTrace();
 
         } catch (IOException e) {
@@ -75,7 +60,7 @@ public class Calparse extends AsyncTask<Void,Void,String> {
     }
 
 
-    public List searchfood()  {
+    public List searchfood() {
         String key = "2bddcb3b9540419c83d720f4eef90eb8";
         String secret = "13e285dbfec5421a94a705f20659eaa2";
 
@@ -83,25 +68,24 @@ public class Calparse extends AsyncTask<Void,Void,String> {
         FatsecretService service = new FatsecretService(key, secret);
 
         String query = "pasta"; //Your query string
-      //  RequestQueue requestQueue = Volley.newRequestQueue();
-       // com.android.volley.Response.Listener listener = new com.android.volley.Response.Listener();
+        //  RequestQueue requestQueue = Volley.newRequestQueue();
+        // com.android.volley.Response.Listener listener = new com.android.volley.Response.Listener();
 
         //Request req = new Request(key, secret, listener);
         Response<CompactFood> response = service.searchFoods(query);
 
         //This response contains the list of food items at zeroth page for your query
 
-        List<CompactFood> results=response.getResults();
-       // return results;
+        List<CompactFood> results = response.getResults();
+        // return results;
         return results;
     }
 
     protected void onPostExecute(String response) {
-        if(response == null) {
+        if (response == null) {
             //response = "THERE WAS AN ERROR";
             System.out.println("im nto ai");
-        }
-        else{
+        } else {
             System.out.println("Successs");
         }
 
