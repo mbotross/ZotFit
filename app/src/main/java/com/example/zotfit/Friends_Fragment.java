@@ -1,10 +1,10 @@
 package com.example.zotfit;
 
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +14,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +30,8 @@ public class Friends_Fragment extends Fragment {
     List friendslist=new ArrayList<>();
     ArrayAdapter adapter;
     Database db;
-    String[] userlist,passlist;
+    String[] userlist,passlist, imagelist;
     Button addbutton;
-
 
     @Nullable
     @Override
@@ -75,9 +78,11 @@ public class Friends_Fragment extends Fragment {
 
             userlist = new String[cursor.getCount()];
             passlist=new String[cursor.getCount()];
+            imagelist = new String[cursor.getCount()];
             do{
                 userlist[i]=cursor.getString(cursor.getColumnIndex(Database.COL1));
                 passlist[i]=cursor.getString(cursor.getColumnIndex(Database.COL2));
+                imagelist[i] = cursor.getString(cursor.getColumnIndex(Database.COL4));
                 i++;
 
             }while (cursor.moveToNext());
@@ -109,7 +114,11 @@ public class Friends_Fragment extends Fragment {
             ImageView imageView=(ImageView)view.findViewById(R.id.friendimage);
             TextView textView=(TextView)view.findViewById(R.id.friendname);
             de.hdodenhof.circleimageview.CircleImageView circleImageView= (CircleImageView) view.findViewById(R.id.circleimage);
-            circleImageView.setImageResource(R.mipmap.ic_launcher_round);
+            if (imagelist[position] != null){
+                circleImageView.setImageURI(Uri.parse(imagelist[position]));
+            }
+            else circleImageView.setImageResource(R.mipmap.ic_launcher_round);
+
             textView.setText(userlist[position]);
             return view;
         }

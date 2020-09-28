@@ -9,7 +9,7 @@
     tools:context=".Home">
 
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="122dp"
@@ -20,7 +20,7 @@
         android:background="#FFCC00"
         />
 
-    <android.support.design.widget.BottomNavigationView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,11 +33,11 @@
     <FrameLayout
         android:id="@+id/fragment_layout"
         android:layout_width="match_parent"
-        android:layout_height="548dp"
+        android:layout_height="589dp"
         android:layout_alignTop="@+id/toolbar"
         android:layout_alignBottom="@+id/bottom_navigation"
-        android:layout_marginTop="126dp"
-        android:layout_marginBottom="57dp"/>
+        android:layout_marginTop="85dp"
+        android:layout_marginBottom="57dp" />
 
 
 </RelativeLayout>

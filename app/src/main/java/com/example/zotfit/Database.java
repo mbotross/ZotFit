@@ -5,23 +5,24 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import android.net.Uri;
 
 public class Database extends SQLiteOpenHelper {
-
+    Preferences preferences = Preferences.INSTANCE;
     public static final String database_name = "resgistered";
     public static final String table_name = "login_info";
     public static final String table_name2 = "friendslist";
     public static final String COL1 = "usernames";
     public static final String COL2 = "passwords";
+    public static final String COL3 = "calories";
+    public static final String COL4 = "image";
+
+
 
 
     public Database(Context context) {
 
-        super(context, database_name, null, 1);
+        super(context, database_name, null, 2);
         SQLiteDatabase db = this.getWritableDatabase();
 
     }
@@ -32,6 +33,7 @@ public class Database extends SQLiteOpenHelper {
         ContentValues contentvalues = new ContentValues();
         contentvalues.put(COL1, username);
         contentvalues.put(COL2, password);
+        contentvalues.put(COL3, 0);
         db.insert(table_name, null, contentvalues);
         db.close();
         return true;
@@ -66,7 +68,7 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + table_name + "(id INTEGER PRIMARY KEY AUTOINCREMENT, usernames TEXT, passwords TEXT, image BLOB not null)");
+        db.execSQL("create table " + table_name + "(id INTEGER PRIMARY KEY AUTOINCREMENT, usernames TEXT, passwords TEXT, calories TEXT, image TEXT)");
         db.execSQL("create table " + table_name2 + "(id INTEGER PRIMARY KEY AUTOINCREMENT, friend TEXT)");
 
     }
@@ -82,23 +84,31 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertimage(String image, int id) {
+    public String getimage(String username){
         SQLiteDatabase db = this.getReadableDatabase();
-        try {
-            FileInputStream fileInputStream = new FileInputStream(image);
-            byte[] imagebyte = new byte[fileInputStream.available()];
-            fileInputStream.read(imagebyte);
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("id", id);
-            contentValues.put("image", imagebyte);
-            db.insert(table_name, null, contentValues);
-            fileInputStream.close();
-            return true;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        String sql = "SELECT * FROM " + table_name + " where usernames=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{username});
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            return (cursor.getString(cursor.getColumnIndex(COL4)));
         }
-        return false;
+
+        return "";
     }
-}
+
+    public boolean insertimage(Uri imageUri) {
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("image", imageUri.toString());
+            db.update(table_name, contentValues, COL1+ "=?" , new String[]{preferences.getUsername()});
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+
+    }
+
+    }

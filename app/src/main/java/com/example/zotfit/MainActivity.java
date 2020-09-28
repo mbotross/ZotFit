@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
     Database mydb;
     Intent intent;
     String[] userlist,passlist;
+    Preferences preferences = Preferences.INSTANCE;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,8 @@ public class MainActivity extends Activity {
                 pass=password.getText().toString();
 
                 if(user.length()!=0 && pass.length()!=0){
-                    if(mydb.checkuser(user,pass)==true){
+                    if(mydb.checkuser(user, pass)){
+                        preferences.setLogin(user, pass);
                         startActivity(intent);
                     }
                     else{
@@ -81,7 +83,7 @@ public class MainActivity extends Activity {
 
                     if(clear==0){
                         mydb.adduser(user,pass);
-
+                        preferences.setLogin(user, pass);
                         startActivity(intent);
                     }
 
