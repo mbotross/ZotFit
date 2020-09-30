@@ -117,65 +117,48 @@ public class Home_Fragment extends Fragment {
 
 
     private void setUpPieChart(){
-        ArrayList<PieEntry> NoOfEmp = new ArrayList();
-        NoOfEmp.add(new PieEntry(945f, 0));
-        NoOfEmp.add(new PieEntry(1040f, 1));
-        NoOfEmp.add(new PieEntry(1133f, 2));
-        NoOfEmp.add(new PieEntry(1240f, 3));
-        NoOfEmp.add(new PieEntry(1369f, 4));
-        NoOfEmp.add(new PieEntry(1487f, 5));
-        NoOfEmp.add(new PieEntry(1501f, 6));
-        NoOfEmp.add(new PieEntry(1645f, 7));
-        NoOfEmp.add(new PieEntry(1578f, 8));
-        NoOfEmp.add(new PieEntry(1695f, 9));
-        PieDataSet dataSet = new PieDataSet(NoOfEmp, "Number Of Employees");
-
-        ArrayList year = new ArrayList();
-
-        year.add("2008");
-        year.add("2009");
-        year.add("2010");
-        year.add("2011");
-        year.add("2012");
-        year.add("2013");
-        year.add("2014");
-        year.add("2015");
-        year.add("2016");
-        year.add("2017");
+        DailyData dailyData = db.getDailyData(Preferences.INSTANCE.getUsername());
+        ArrayList<PieEntry> healthData = new ArrayList();
+        healthData.add(new PieEntry(dailyData.getCalorories(), "calories"));
+        healthData.add(new PieEntry(dailyData.getProtein(), "protein"));
+        healthData.add(new PieEntry(dailyData.getFat(), "fat"));
+        healthData.add(new PieEntry(dailyData.getCarbohydrates(), "carbohydrates"));
+        PieDataSet dataSet = new PieDataSet(healthData, "");
         PieData data = new PieData(dataSet);
         pieChart.setData(data);
+        data.setValueTextSize(16f);
         dataSet.setColors(ColorTemplate.PASTEL_COLORS);
         pieChart.animateXY(2000, 2000);
     }
 
-    private void setUpBarChart(){
-        ArrayList<BarEntry> healthData = new ArrayList();
-
-        healthData.add(new BarEntry(200, 0));
-        healthData.add(new BarEntry(14f, 1));
-        healthData.add(new BarEntry(200, 2));
-        healthData.add(new BarEntry(100, 3));
-
-        ArrayList year = new ArrayList();
-
-        year.add("2008");
-        year.add("2009");
-        year.add("2010");
-        year.add("2011");
-        year.add("2012");
-        year.add("2013");
-        year.add("2014");
-        year.add("2015");
-        year.add("2016");
-        year.add("2017");
-
-        BarDataSet bardataset = new BarDataSet(healthData, "No Of Employee");
-        barChart.animateY(1000);
-        BarData data = new BarData(bardataset);
-        bardataset.setColors(ColorTemplate.PASTEL_COLORS);
-        barChart.setData(data);
-
-    }
+//    private void setUpBarChart(){
+//        ArrayList<BarEntry> healthData = new ArrayList();
+//
+//        healthData.add(new BarEntry(200, 0));
+//        healthData.add(new BarEntry(14f, 1));
+//        healthData.add(new BarEntry(200, 2));
+//        healthData.add(new BarEntry(100, 3));
+//
+//        ArrayList year = new ArrayList();
+//
+//        year.add("2008");
+//        year.add("2009");
+//        year.add("2010");
+//        year.add("2011");
+//        year.add("2012");
+//        year.add("2013");
+//        year.add("2014");
+//        year.add("2015");
+//        year.add("2016");
+//        year.add("2017");
+//
+//        BarDataSet bardataset = new BarDataSet(healthData, "No Of Employee");
+//        barChart.animateY(1000);
+//        BarData data = new BarData(bardataset);
+//        bardataset.setColors(ColorTemplate.PASTEL_COLORS);
+//        barChart.setData(data);
+//
+//    }
 
 
 
