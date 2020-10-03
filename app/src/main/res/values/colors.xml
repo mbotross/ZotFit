@@ -6,5 +6,6 @@
     <color name="colorbottombar">#FFCC00</color>
     <color name="babyblue">#1261A0</color>
     <color name="louche">#FFFFFD</color>
+    <color name="black">#000000</color>
 
 </resources>

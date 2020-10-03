@@ -1,16 +1,12 @@
 package com.example.zotfit;
 
 import android.content.Intent;
-import android.graphics.Path;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,22 +15,13 @@ import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Home_Fragment extends Fragment {
@@ -60,7 +47,7 @@ public class Home_Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
        circleImageView= (CircleImageView) view.findViewById(R.id.circleimage);
-        db=new Database(getContext());
+        db=Database.getInstance(getContext());
         Name=view.findViewById(R.id.nametext);
         pieChart = view.findViewById(R.id.piechart);
        // barChart = view.findViewById(R.id.barChart);
@@ -101,9 +88,6 @@ public class Home_Fragment extends Fragment {
             db.insertimage(imaguri);
 
         }
-//        else if( requestCode == OPEN_IMAGE && data !=null){
-//
-//        }
 
     }
 
@@ -119,47 +103,17 @@ public class Home_Fragment extends Fragment {
     private void setUpPieChart(){
         DailyData dailyData = db.getDailyData(Preferences.INSTANCE.getUsername());
         ArrayList<PieEntry> healthData = new ArrayList();
-        healthData.add(new PieEntry(dailyData.getCalorories(), "calories"));
-        healthData.add(new PieEntry(dailyData.getProtein(), "protein"));
-        healthData.add(new PieEntry(dailyData.getFat(), "fat"));
-        healthData.add(new PieEntry(dailyData.getCarbohydrates(), "carbohydrates"));
+        healthData.add(new PieEntry(dailyData.getProtein(), "Protein(g)"));
+        healthData.add(new PieEntry(dailyData.getFat(), "Fat(g)"));
+        healthData.add(new PieEntry(dailyData.getCarbohydrates(), "Carbs(g)"));
         PieDataSet dataSet = new PieDataSet(healthData, "");
         PieData data = new PieData(dataSet);
         pieChart.setData(data);
-        data.setValueTextSize(16f);
-        dataSet.setColors(ColorTemplate.PASTEL_COLORS);
-        pieChart.animateXY(2000, 2000);
+        dataSet.setValueLineColor(R.color.black);
+        data.setValueTextSize(14f);
+        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        pieChart.animateXY(1000, 1000);
     }
-
-//    private void setUpBarChart(){
-//        ArrayList<BarEntry> healthData = new ArrayList();
-//
-//        healthData.add(new BarEntry(200, 0));
-//        healthData.add(new BarEntry(14f, 1));
-//        healthData.add(new BarEntry(200, 2));
-//        healthData.add(new BarEntry(100, 3));
-//
-//        ArrayList year = new ArrayList();
-//
-//        year.add("2008");
-//        year.add("2009");
-//        year.add("2010");
-//        year.add("2011");
-//        year.add("2012");
-//        year.add("2013");
-//        year.add("2014");
-//        year.add("2015");
-//        year.add("2016");
-//        year.add("2017");
-//
-//        BarDataSet bardataset = new BarDataSet(healthData, "No Of Employee");
-//        barChart.animateY(1000);
-//        BarData data = new BarData(bardataset);
-//        bardataset.setColors(ColorTemplate.PASTEL_COLORS);
-//        barChart.setData(data);
-//
-//    }
-
 
 
 }

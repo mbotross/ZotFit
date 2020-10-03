@@ -10,33 +10,87 @@
 
 
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="363dp"
-        android:layout_height="76dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toTopOf="@+id/search_recycler"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_recycler"
-        android:layout_width="359dp"
-        android:layout_height="455dp"
-        android:padding="8dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+    <Button
+        android:id="@+id/search_food"
+        android:layout_width="173dp"
+        android:layout_height="331dp"
+        android:background="@drawable/food_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.942" />
+        app:layout_constraintVertical_bias="0.697" />
+
+    <TextView
+        android:layout_width="134dp"
+        android:layout_height="52dp"
+        android:background="@color/louche"
+        android:elevation="10dp"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/search_food"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/search_food"
+        app:layout_constraintEnd_toEndOf="@+id/search_food"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="@+id/search_food"
+        app:layout_constraintTop_toTopOf="@+id/search_food"
+        app:layout_constraintVertical_bias="0.949" />
+
+    <Button
+        android:id="@+id/search_recipe"
+        android:layout_width="173dp"
+        android:layout_height="331dp"
+        android:background="@drawable/recipeimage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.351"
+        app:layout_constraintStart_toEndOf="@+id/search_food"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.697" />
+
+    <TextView
+        android:layout_width="134dp"
+        android:layout_height="52dp"
+        android:fontFamily="cursive"
+        android:text="@string/search_recipe"
+        android:textColor="@color/black"
+        android:background="@color/louche"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/search_recipe"
+        app:layout_constraintEnd_toEndOf="@+id/search_recipe"
+        app:layout_constraintHorizontal_bias="0.615"
+        app:layout_constraintStart_toStartOf="@+id/search_recipe"
+        app:layout_constraintTop_toTopOf="@+id/search_recipe"
+        app:layout_constraintVertical_bias="0.949" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="302dp"
+        android:layout_height="106dp"
+        android:background="@color/louche"
+        android:elevation="10dp"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Search for information on a Food item or look for a fun and healthy Recipe"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/search_recipe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.092" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.zotfit
 import com.fatsecret.platform.model.CompactFood
+import com.fatsecret.platform.model.CompactRecipe
 import com.fatsecret.platform.services.FatsecretService
 import com.fatsecret.platform.services.Request
 
@@ -18,5 +19,8 @@ class Calparse {
         return response.results
     }
 
-
+    fun searchRecipe(searchItem: String): List<CompactRecipe>?{
+        val response = service.searchRecipes(searchItem)
+        return response.results
+    }
 }

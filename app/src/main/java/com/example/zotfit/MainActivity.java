@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
         password=(EditText)findViewById(R.id.password);
         login=(Button)findViewById(R.id.login);
         register=(Button) findViewById(R.id.register);
-        mydb=new Database(this);
+        mydb=Database.getInstance(this);
 
         intent=new Intent(this,Home.class);
 

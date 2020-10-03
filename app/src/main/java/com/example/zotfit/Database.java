@@ -9,6 +9,8 @@ import android.net.Uri;
 
 public class Database extends SQLiteOpenHelper {
     Preferences preferences = Preferences.INSTANCE;
+    private static Database mInstance = null;
+    private Context mCxt;
     public static final String database_name = "resgistered";
     public static final String table_name = "login_info";
     public static final String table_name2 = "friendslist";
@@ -25,11 +27,17 @@ public class Database extends SQLiteOpenHelper {
     public static final String DPRO = "daily_protein";
     public static final String DCARB = "daily_carb";
 
-    public Database(Context context) {
+    private Database(Context context) {
 
-        super(context, database_name, null, 3);
-        SQLiteDatabase db = this.getWritableDatabase();
+        super(context, database_name, null, 4);
+        this.mCxt = context;
+    }
 
+    public static Database getInstance(Context ctx) {
+        if (mInstance == null) {
+            mInstance = new Database(ctx.getApplicationContext());
+        }
+        return mInstance;
     }
 
 
@@ -40,7 +48,14 @@ public class Database extends SQLiteOpenHelper {
         contentvalues.put(COL2, password);
         contentvalues.put(COL3, 0);
         db.insert(table_name, null, contentvalues);
-        updateDailyData(username, "0","0","0","0");
+
+        contentvalues = new ContentValues();
+        contentvalues.put(COL1, username);
+        contentvalues.put(DCAL, 0);
+        contentvalues.put(DFAT, 0);
+        contentvalues.put(DPRO, 0);
+        contentvalues.put(DCARB, 0);
+        db.insert(table_name3, null, contentvalues);
         db.close();
         return true;
 
@@ -76,7 +91,7 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + table_name + "(id INTEGER PRIMARY KEY AUTOINCREMENT, usernames TEXT, passwords TEXT, calories TEXT, image TEXT)");
         db.execSQL("create table " + table_name2 + "(id INTEGER PRIMARY KEY AUTOINCREMENT, usernames TEXT, friend TEXT)");
-        db.execSQL("create table " + table_name3 + "(id INTEGER PRIMARY KEY AUTOINCREMENT, usernames TEXT, friend TEXT, daily_cal TEXT, daily_fat TEXT, daily_protein TEXT, daily_carb TEXT)");
+        db.execSQL("create table " + table_name3 + "(id INTEGER PRIMARY KEY AUTOINCREMENT, usernames TEXT, daily_cal TEXT, daily_fat TEXT, daily_protein TEXT, daily_carb TEXT)");
 
     }
 
@@ -101,6 +116,7 @@ public class Database extends SQLiteOpenHelper {
 
         return "";
     }
+
 
     public boolean insertimage(Uri imageUri) {
         try{
@@ -139,10 +155,10 @@ public class Database extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(sql, new String[]{username});
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            data = new DailyData(username, Integer.parseInt(cursor.getString(cursor.getColumnIndex(DCAL))),
-                    Integer.parseInt(cursor.getString(cursor.getColumnIndex(DFAT))),
-                    Integer.parseInt(cursor.getString(cursor.getColumnIndex(DPRO))),
-                    Integer.parseInt(cursor.getString(cursor.getColumnIndex(DCARB))));
+            data = new DailyData(username, Float.parseFloat(cursor.getString(cursor.getColumnIndex(DCAL))),
+                    Float.parseFloat(cursor.getString(cursor.getColumnIndex(DFAT))),
+                    Float.parseFloat(cursor.getString(cursor.getColumnIndex(DPRO))),
+                    Float.parseFloat(cursor.getString(cursor.getColumnIndex(DCARB))));
         }
 
         return data;

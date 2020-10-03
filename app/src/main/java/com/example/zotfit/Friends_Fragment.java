@@ -46,7 +46,7 @@ public class Friends_Fragment extends Fragment {
         listview=(ListView)view.findViewById(R.id.friends_list_view);
 
 
-        db=new Database(getContext());
+        db=Database.getInstance(getContext());
         showusers();
         if(userlist!=null){
             for(String fitter:userlist){
