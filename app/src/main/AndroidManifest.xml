@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".search.Search_Food"></activity>
-        <activity android:name=".search.Search_Recipe" />
+        <activity android:name=".search.Search_Recipe"></activity>
+        <activity android:name=".search.Search_Food" />
         <activity android:name=".Registration" />
         <activity android:name=".search.Item_Details" />
         <activity android:name=".Home" />
@@ -27,9 +27,9 @@
         </activity>
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

@@ -36,11 +36,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class Search_Fragment extends Fragment{
     @Nullable
-    String fooditem;
-    List <CompactFood> food;
-    Calparse calparse = new Calparse();
-    SearchAdapter adapter;
-    RecyclerView recyclerView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +53,7 @@ public class Search_Fragment extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button searchFood = view.findViewById(R.id.search_food);
+        Button searchRecipe = view.findViewById(R.id.search_recipe);
         searchFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +61,15 @@ public class Search_Fragment extends Fragment{
                 startActivity(intent);
             }
         });
+
+        searchRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Search_Recipe.class);
+                startActivity(intent);
+            }
+        });
+
 //        SearchView searchView=view.findViewById(R.id.searchView);
 //        adapter = new SearchAdapter(Objects.requireNonNull(getContext()), this);
 //        recyclerView = view.findViewById(R.id.search_recycler);

@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
+import java.util.Collections;
+import java.util.List;
+
 public class Database extends SQLiteOpenHelper {
     Preferences preferences = Preferences.INSTANCE;
     private static Database mInstance = null;
@@ -21,6 +24,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String COL3 = "calories";
     public static final String COL4 = "image";
 
+    public static final String FRIENDS = "friend";
 
     public static final String DCAL = "daily_cal";
     public static final String DFAT = "daily_fat";
@@ -61,11 +65,30 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
-    public boolean addfriend(Integer ID, String friendname) {
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
+    public boolean addFriend(String username, String friendname) {
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(FRIENDS, friendname);
+            db.update(table_name2, contentValues, COL1+ "=?" , new String[]{username});
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
 
-        return true;
+    public List<String> getFriendsList(String username){
+        List<String> friendsList = Collections.emptyList();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT * FROM " + table_name2 + " where usernames=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{username});
+        friendsList.add(cursor.getString(cursor.getColumnIndex(FRIENDS)));
+        while(cursor.moveToNext()){
+            friendsList.add(cursor.getString(cursor.getColumnIndex(FRIENDS)));
+        }
+
+        return friendsList;
     }
 
     public Cursor getuser() {

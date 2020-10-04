@@ -57,14 +57,14 @@ public class Friends_Fragment extends Fragment {
       //  adapter=new ArrayAdapter(getActivity(),R.layout.fragment,R.id.friendstext, friendslist);
         listview.setAdapter(customAdapter);
         addbutton=view.findViewById(R.id.addbutton);
-/*        addbutton.setOnClickListener(new View.OnClickListener(){
+        addbutton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
 
 
             }
-        });*/
+        });
 
 
     }

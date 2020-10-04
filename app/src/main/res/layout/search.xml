@@ -8,9 +8,6 @@
     android:hapticFeedbackEnabled="true">
 
 
-
-
-
     <Button
         android:id="@+id/search_food"
         android:layout_width="173dp"

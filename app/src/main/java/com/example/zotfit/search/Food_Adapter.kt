@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.zotfit.R
 import com.fatsecret.platform.model.CompactFood
 
-class SearchAdapter internal constructor(
+class Food_Adapter internal constructor(
         context: Context, val click: onItemClick
-) : Adapter<SearchAdapter.WordViewHolder>() {
+) : Adapter<Food_Adapter.WordViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var itemsList: MutableList<CompactFood> = mutableListOf()
     inner class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
