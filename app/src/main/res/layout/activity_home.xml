@@ -36,8 +36,8 @@
         android:layout_height="589dp"
         android:layout_alignTop="@+id/toolbar"
         android:layout_alignBottom="@+id/bottom_navigation"
-        android:layout_marginTop="85dp"
-        android:layout_marginBottom="57dp" />
+        android:layout_marginTop="49dp"
+        android:layout_marginBottom="93dp" />
 
 
 </RelativeLayout>

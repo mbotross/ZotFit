@@ -112,7 +112,7 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + table_name + "(id INTEGER PRIMARY KEY AUTOINCREMENT, usernames TEXT, passwords TEXT, calories TEXT, image TEXT)");
+        db.execSQL("create table " + table_name + "(id INTEGER PRIMARY KEY AUTOINCREMENT, usernames TEXT, passwords TEXT, fullname TEXT, major TEXT, calories TEXT, image TEXT)");
         db.execSQL("create table " + table_name2 + "(id INTEGER PRIMARY KEY AUTOINCREMENT, usernames TEXT, friend TEXT)");
         db.execSQL("create table " + table_name3 + "(id INTEGER PRIMARY KEY AUTOINCREMENT, usernames TEXT, daily_cal TEXT, daily_fat TEXT, daily_protein TEXT, daily_carb TEXT)");
 

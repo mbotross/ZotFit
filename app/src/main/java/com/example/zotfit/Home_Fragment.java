@@ -19,9 +19,14 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Home_Fragment extends Fragment {
@@ -29,6 +34,7 @@ public class Home_Fragment extends Fragment {
     BarChart barChart;
     TextView Name;
     Database db;
+    Integer calories;
     final static int GALLERY_PIC =1;
     final static int OPEN_IMAGE = 2;
     de.hdodenhof.circleimageview.CircleImageView circleImageView;
@@ -46,19 +52,22 @@ public class Home_Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-       circleImageView= (CircleImageView) view.findViewById(R.id.circleimage);
+        circleImageView= (CircleImageView) view.findViewById(R.id.circleimage);
         db=Database.getInstance(getContext());
         Name=view.findViewById(R.id.nametext);
         pieChart = view.findViewById(R.id.piechart);
-       // barChart = view.findViewById(R.id.barChart);
         Name.setText(MainActivity.user);
         setUpPieChart();
-       // setUpBarChart();
+        if(calories != null){
+            String cals = getString(R.string.calorie_amount, calories);
+            TextView calorie_amount = view.findViewById(R.id.calorie_amount);
+            calorie_amount.setText(cals);
+        }
         if(db.getimage(Preferences.INSTANCE.getUsername())!= null){
 
             Uri uri = Uri.parse(db.getimage(Preferences.INSTANCE.getUsername()));
             try {
-                InputStream input = getContext().getContentResolver().openInputStream(uri);
+                InputStream input = Objects.requireNonNull(getContext()).getContentResolver().openInputStream(uri);
                 assert input != null;
                 circleImageView.setImageResource(input.read());
             } catch (IOException e) {
@@ -86,9 +95,7 @@ public class Home_Fragment extends Fragment {
             Uri imaguri=data.getData();
             circleImageView.setImageURI(imaguri);
             db.insertimage(imaguri);
-
         }
-
     }
 
     private void openFile(String uri){
@@ -103,6 +110,7 @@ public class Home_Fragment extends Fragment {
     private void setUpPieChart(){
         DailyData dailyData = db.getDailyData(Preferences.INSTANCE.getUsername());
         ArrayList<PieEntry> healthData = new ArrayList();
+        calories = (int) dailyData.getCalorories();
         healthData.add(new PieEntry(dailyData.getProtein(), "Protein(g)"));
         healthData.add(new PieEntry(dailyData.getFat(), "Fat(g)"));
         healthData.add(new PieEntry(dailyData.getCarbohydrates(), "Carbs(g)"));

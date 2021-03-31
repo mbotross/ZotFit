@@ -5,7 +5,9 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.zotfit.DailyData
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
+import com.example.zotfit.DataViewModel
 import com.example.zotfit.Database
 import com.example.zotfit.Preferences
 import com.example.zotfit.R
@@ -34,6 +36,7 @@ class Item_Details : AppCompatActivity() {
         }
         additem.setOnClickListener{
             updatedailyData(dataList)
+            finish()
         }
     }
 
@@ -51,7 +54,7 @@ class Item_Details : AppCompatActivity() {
             val fat = getData.fat + data[1]
             val protein = getData.protein + data[2]
             val carbs = getData.carbohydrates + data[3]
-            println("cals"+ cals)
+            println("cals" + cals)
             database.updateDailyData(Preferences.username, cals.toString(), fat.toString(), protein.toString(), carbs.toString())
         }
     }

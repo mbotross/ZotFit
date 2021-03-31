@@ -24,11 +24,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
         setContentView(R.layout.activity_main);
-
-
-
         username=(EditText)findViewById(R.id.username);
         password=(EditText)findViewById(R.id.password);
         login=(Button)findViewById(R.id.login);

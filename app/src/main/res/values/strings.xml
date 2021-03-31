@@ -3,4 +3,6 @@
     <string name="add_item">Add Item</string>
     <string name="search_food">Search Food</string>
     <string name="search_recipe">Search Recipe</string>
+    <string name="calorie_amount">%1$d kCal</string>
+    <string name="daily_calories">Daily Calories:</string>
 </resources>

@@ -12,10 +12,10 @@ import com.fatsecret.platform.model.CompactFood
 
 class Food_Adapter internal constructor(
         context: Context, val click: onItemClick
-) : Adapter<Food_Adapter.WordViewHolder>() {
+) : Adapter<Food_Adapter.ViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var itemsList: MutableList<CompactFood> = mutableListOf()
-    inner class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.textView)
         fun initialize(food: CompactFood, action: onItemClick){
             itemView.setOnClickListener{
@@ -31,12 +31,12 @@ class Food_Adapter internal constructor(
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = inflater.inflate(R.layout.searchitem, parent, false)
-        return WordViewHolder(itemView)
+        return ViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = itemsList[position]
         holder.name.text=current.name
         holder.initialize(itemsList[position], click)
