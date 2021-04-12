@@ -7,6 +7,4 @@ object Preferences {
         this.username = username;
         this.password = password;
     }
-
-
 }
