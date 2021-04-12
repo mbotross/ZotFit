@@ -3,7 +3,6 @@ package com.example.zotfit.search;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +28,7 @@ public class Search_Food extends AppCompatActivity implements onItemClick{
     String fooditem;
     List <CompactFood> food;
     Calparse calparse = new Calparse();
-    Food_Adapter adapter;
+    FoodAdapter adapter;
     RecyclerView recyclerView;
     DataViewModel viewModel;
 
@@ -39,7 +38,7 @@ public class Search_Food extends AppCompatActivity implements onItemClick{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search__food);
         SearchView searchView=findViewById(R.id.searchView);
-        adapter = new Food_Adapter(getApplicationContext(), this);
+        adapter = new FoodAdapter(getApplicationContext(), this);
         recyclerView = findViewById(R.id.search_recycler);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

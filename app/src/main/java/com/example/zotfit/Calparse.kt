@@ -5,8 +5,6 @@ import com.fatsecret.platform.services.FatsecretService
 import com.fatsecret.platform.services.Request
 
 class Calparse {
-    var home: Home? = null
-    var request: Request? = null
     private var service: FatsecretService
     init {
         val key = "2bddcb3b9540419c83d720f4eef90eb8"

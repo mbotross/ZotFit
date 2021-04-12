@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.zotfit.R
 import com.fatsecret.platform.model.CompactFood
 
-class Food_Adapter internal constructor(
+class FoodAdapter internal constructor(
         context: Context, val click: onItemClick
-) : Adapter<Food_Adapter.ViewHolder>() {
+) : Adapter<FoodAdapter.ViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var itemsList: MutableList<CompactFood> = mutableListOf()
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,7 +28,6 @@ class Food_Adapter internal constructor(
         itemsList.clear()
         itemsList.addAll(items)
         notifyDataSetChanged()
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
